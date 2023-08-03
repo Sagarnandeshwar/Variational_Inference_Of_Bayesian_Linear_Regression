@@ -25,7 +25,8 @@ In particular, the model is specified as below:
 ![em](https://github.com/Sagarnandeshwar/Variational_Inference_Of_Bayesian_Linear_Regression/blob/main/image/em.png)
 
 ## Dataset: 
-There are M = 100 SNPs, Ntrain = 439 training patients, Ntest = 50 test patients. Both the genotype Xtrain,Xtest and phenotype ytrain, ytest were standardized. The marginal summary statistics βmarginal saved in beta marginal.csv.gz and the LD matrix R saved in LD.csv.gz were completely derived from the 439 training patients only: 
+There are M = 100 SNPs, $N_{train}$ = 439 training patients, $N_{test}$ = 50 test patients. Both the genotype $X_{train},X_{test}$ and phenotype $y_{train}, y_{test}$ were standardized. The marginal summary statistics $β_{marginal}$ saved in beta marginal.csv.gz and the LD matrix R saved in LD.csv.gz were completely derived from the 439 training patients only: 
+![dataset](https://github.com/Sagarnandeshwar/Variational_Inference_Of_Bayesian_Linear_Regression/blob/main/image/dataset.png)
 
 ## Expectation step 
 In the Expectation step, we cycle through one SNP at a time to update its posterior precision and posterior mean of the effect size and its PIP while fixing all of the rest of the SNPs. 
@@ -36,10 +37,10 @@ Set the initial values for the posterior estimates for all SNPs to the following
 Set the initial values for the hyperparameters to the following values: 
 ![e2](https://github.com/Sagarnandeshwar/Variational_Inference_Of_Bayesian_Linear_Regression/blob/main/image/e2.png)
 
-For numerical stability, after a full cycle of E-step, cap the resulting PIP γj of each SNP within [0.01, 0.99]. That is, if γj < 0.01 set it to 0.01, and if γj > 0.99 set it to 0.99. 
+For numerical stability, after a full cycle of E-step, cap the resulting PIP $γ_j$ of each SNP within [0.01, 0.99]. That is, if $γ_j$ < 0.01 set it to 0.01, and if $γ_j$ > 0.99 set it to 0.99. 
 
 ## Maximization step 
-In Maximization step, we didn't update τϵ in the M-step and keep its value always as 1, and only implement the update for τβ and π. 
+In Maximization step, we didn't update $τ_ϵ$ in the M-step and keep its value always as 1, and only implement the update for $τ_β$ and π. 
 
 ## Evidence lower bound 
 The evidence lower bound (ELBO) of the model is: 
@@ -49,18 +50,18 @@ More specifically,
 
 ![elbos](https://github.com/Sagarnandeshwar/Variational_Inference_Of_Bayesian_Linear_Regression/blob/main/image/elbos.png)
 
-where γ∗j , μ∗j , and τj are the inferred PIP, mean and precision of the effect size for SNP j at the E-step, respectively; ◦ is the elementwise product of two vectors. 
+where $γ_j^*$ , $μ_j^*$ , and $τ_j$ are the inferred PIP, mean and precision of the effect size for SNP j at the E-step, respectively; ◦ is the elementwise product of two vectors. 
 
 I ran EM-update algorithm for 10 iterations and the plot the ELBO as a function of iterations. 
 ![elbor](https://github.com/Sagarnandeshwar/Variational_Inference_Of_Bayesian_Linear_Regression/blob/main/image/elbor.png)
 
 ## Evaluating PRS prediction 
-Xtrain, ytrain, Xtest, ytest from the respective CSV files: X train.csv.gz, y train.csv.gz, X test.csv.gz, y test.csv.gz 
+$X_{train}, y_{train}, X_{test}, y_{test}$ from the respective CSV files: X train.csv.gz, y train.csv.gz, X test.csv.gz, y test.csv.gz 
 
 Then, predict PRS for both the 439 training patients and the 50 testing patients using their genotypes: 
 ![train](https://github.com/Sagarnandeshwar/Variational_Inference_Of_Bayesian_Linear_Regression/blob/main/image/train.png)
 
-where γ∗ and μ∗ are the inferred PIP and expected effect size at the E-step, respectively. ◦ is the elementwise product of two vectors. 
+where $γ^∗$ and $μ^∗$ are the inferred PIP and expected effect size at the E-step, respectively. ◦ is the elementwise product of two vectors. 
 
 I then calculated the Pearson correlation coefficient (PCC) between your predicted phenotypes and the true phenotypes, and generated the following scatter plots PRS prediction on training and testing set
 
