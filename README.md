@@ -1,5 +1,5 @@
 # Variational inference of Bayesian polygenic risk score regression with spike-and-slab prior
-Implemented the variational inference (VI) algorithm to infer Bayesian linear regression coefficients that follow a spike-and-slab prior and reparametrized into Bernoulli-Gaussian prior.
+Implemented the variational inference (VI) algorithm to infer Bayesian linear regression coefficients that uses a spike-and-slab prior and reparametrized into Bernoulli-Gaussian prior.
 
 ## Variational Inference 
 Variational inference is a technique used in Bayesian statistics and machine learning to approximate complex posterior distributions when exact inference is computationally infeasible. It is particularly useful when dealing with models that involve high-dimensional latent variables or complex dependencies. 
