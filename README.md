@@ -50,7 +50,7 @@ More specifically,
 
 ![elbos](https://github.com/Sagarnandeshwar/Variational_Inference_Of_Bayesian_Linear_Regression/blob/main/image/elbos.png)
 
-where $γ_j^*$ , $μ_j^*$ , and $τ_j$ are the inferred PIP, mean and precision of the effect size for SNP j at the E-step, respectively; ◦ is the elementwise product of two vectors. 
+where $γ_j^* $ , $μ_j^* $ , and $τ_j$ are the inferred PIP, mean and precision of the effect size for SNP j at the E-step, respectively; ◦ is the elementwise product of two vectors. 
 
 I ran EM-update algorithm for 10 iterations and the plot the ELBO as a function of iterations. 
 ![elbor](https://github.com/Sagarnandeshwar/Variational_Inference_Of_Bayesian_Linear_Regression/blob/main/image/elbor.png)
